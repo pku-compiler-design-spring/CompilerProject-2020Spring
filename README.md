@@ -77,6 +77,7 @@ It means you need to generate a `.cc` file which implements the computation of `
 void kernel_example(float (&B)[32][16], float (&C)[32][16], float (&A)[32][16])
 ```
 Please try to generate C/C++ source files for these json files and put them under directory `kernels`.
+
 4. Your code genration application source files should be placed in `solution` directory. (But your code genration passes can be put in outer directories such as `include` and `src`)
 
 
