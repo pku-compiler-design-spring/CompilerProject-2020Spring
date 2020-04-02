@@ -3,6 +3,7 @@
 This project is designed for undergraduate students who are taking Compiler Design courses in spring.
 
 > Author: Size Zheng
+
 > Email: zhengsz@pku.edu.cn
 
 ### 1. Overview
@@ -102,7 +103,7 @@ When you build the project, we will actually build four parts:
 - the files in `project1` are compiled to one executable
 - the files in `project1/solution` are compiled to one executable
 
-And we will automatically clean files under `kernels/*.cc`, so you can execpt to modify them manually.
+And we will automatically clean files under `kernels/*.cc`, so you can't expect to modify them manually.
 
 Then we will call the executable from `project1/solution` automatically, which is expected to generate all the functions and put them in `kernels/*.cc`.
 
