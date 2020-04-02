@@ -1,0 +1,7 @@
+{
+    "name": "kernel_case6",
+    "ins": ["B", "C"],
+    "outs": ["A"],
+    "data_type": "float",
+    "kernel": "A<2, 8, 5, 5>[n, k, p, q] = A<2, 8, 5, 5>[n, k, p, q] + B<2, 16, 7, 7>[n, c, p + r, q + s] * C<8, 16, 3, 3>[k, c, r, s];"
+}

@@ -1,0 +1,7 @@
+{
+    "name": "kernel_case10",
+    "ins": ["B"],
+    "outs": ["A"],
+    "data_type": "float",
+    "kernel": "A<8, 8>[i, j] = (B<10, 10>[i, j] + B<10, 10>[i + 1, j] + B<10, 10>[i + 2, j]) / 3;"
+}

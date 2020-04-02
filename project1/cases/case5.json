@@ -1,0 +1,7 @@
+{
+    "name": "kernel_case5",
+    "ins": ["B", "C", "D", "alpha", "beta"],
+    "outs": ["A"],
+    "data_type": "float",
+    "kernel": "A<16, 32>[i, j] = A<16, 32>[i, j] + alpha<1> * (B<16, 32>[i, k] * C<32, 32>[k, j]); A<16, 32>[i, j] = A<16, 32>[i, j] + beta<1> * D<16, 32>[i, j];"
+}

@@ -1,0 +1,7 @@
+{
+    "name": "kernel_example",
+    "ins": ["B", "C"],
+    "outs": ["A"],
+    "data_type": "float",
+    "kernel": "A<32, 16>[i, j] = C<32, 16>[i, j] * B<32, 16>[i, j];"
+}
