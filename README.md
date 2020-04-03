@@ -1,3 +1,5 @@
+![Build](https://github.com/pku-compiler-design-spring/CompilerProject-2020Spring-Part1/workflows/C/C++%20CI/badge.svg?branch=master)
+
 ## Code Generation Compiler
 
 This project is designed for undergraduate students who are taking Compiler Design courses in spring.
