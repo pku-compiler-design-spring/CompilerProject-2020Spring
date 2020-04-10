@@ -5,7 +5,7 @@ file(GLOB clean_src "./clean/*.cc")
 
 include_directories("../include")
 
-add_executable(test ${test_src} ${kernel_src})
+add_executable(test1 ${test_src} ${kernel_src})
 add_executable(solution ${solution_src})
 add_executable(cleanf ${clean_src})
 
@@ -24,4 +24,4 @@ add_custom_target(clean_run
 )
 
 add_dependencies(solution_run clean_run)
-add_dependencies(test solution_run)
+add_dependencies(test1 solution_run)
