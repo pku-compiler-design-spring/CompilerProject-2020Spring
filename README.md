@@ -8,6 +8,12 @@ This project is designed for undergraduate students who are taking Compiler Desi
 
 > Email: zhengsz@pku.edu.cn
 
+### BUG report And Bonus
+
+__Format:__ [date] "message" **reporters** [bonus]
+
+1. [2020-4-14] "In run.cc case 4,5 golden array shape bug" by **Ye Yuan, Anjiang Wei, Yuyue Wang, Chenyang Yang**, [+1]
+
 ### 1. Overview
 In this project, we provide several useful IR nodes and corresponding IRVisitor and IRMutator. The concept behind these structs are well studied in [Halide](https://github.com/halide/Halide) and [TVM](https://github.com/apache/incubator-tvm). Here we invent some new IR nodes and re-implement the Visitor and Mutator for them.
 
@@ -93,7 +99,7 @@ Please try to generate C/C++ source files for these json files and put them unde
 6. If you are confused about what kinds of C/C++ code you are supposed to generate, see `solution/example_solution.cc`.
 
 ### 6. Judge
-1. We provide auto-test file, after building the project, enter `build/project1`, and run `./test`, you can see the results.
+1. We provide auto-test file, after building the project, enter `build/project1`, and run `./test1`, you can see the results.
 2. We only show you 6 cases and 4 cases are hidden. The TAs will test all the 10 files and decide scores according to how many cases you can pass. Don't be worried, the hidden cases are no more complex than the open cases. If you can handle the open cases, you should pass all hidden cases.
 3. Do not copy the codes from others, we will do the check! Any intends to break this rule will result a 0 score to you.
 
@@ -109,4 +115,4 @@ And we will automatically clean files under `kernels/*.cc`, so you can't expect 
 
 Then we will call the executable from `project1/solution` automatically, which is expected to generate all the functions and put them in `kernels/*.cc`.
 
-At last, we will run `./test` manually to see your results and decide your scores according to the results.
+At last, we will run `./test1` manually to see your results and decide your scores according to the results.
