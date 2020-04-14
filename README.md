@@ -10,9 +10,9 @@ This project is designed for undergraduate students who are taking Compiler Desi
 
 ### BUG report And Bonus
 
-__Format:__ [date] "message" **reporters** [bonus]
+__Format:__ [date] "message" by **reporters** [bonus]
 
-1. [2020-4-14] "In run.cc case 4,5 golden array shape bug" by **Ye Yuan, Anjiang Wei, Yuyue Wang, Chenyang Yang**, [+1]
+1. [2020-4-14] "In run.cc case 4,5 golden array shape bug" by **Ye Yuan, Anjiang Wei, Yuyue Wang, Chenyang Yang** [+1]
 
 ### 1. Overview
 In this project, we provide several useful IR nodes and corresponding IRVisitor and IRMutator. The concept behind these structs are well studied in [Halide](https://github.com/halide/Halide) and [TVM](https://github.com/apache/incubator-tvm). Here we invent some new IR nodes and re-implement the Visitor and Mutator for them.
