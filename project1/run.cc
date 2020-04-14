@@ -76,7 +76,7 @@ bool test_case4(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     float A[16][32] = {{0}};
     float B[16][32] = {{0}};
     float C[32][32] = {{0}};
-    float golden[16][8] = {{0}};
+    float golden[16][32] = {{0}};
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 32; ++j) {
             B[i][j] = dis(gen);
@@ -123,7 +123,7 @@ bool test_case5(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     float D[16][32] = {{0}};
     float alpha = dis(gen);
     float beta = dis(gen);
-    float golden[16][8] = {{0}};
+    float golden[16][32] = {{0}};
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 32; ++j) {
             B[i][j] = dis(gen);
