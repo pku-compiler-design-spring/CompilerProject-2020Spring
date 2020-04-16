@@ -7,6 +7,7 @@ include_directories("../include")
 
 add_executable(test1 ${test_src} ${kernel_src})
 add_executable(solution ${solution_src})
+target_link_libraries(solution ${LIB_NAME})
 add_executable(cleanf ${clean_src})
 
 add_custom_target(solution_run
