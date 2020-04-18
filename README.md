@@ -14,6 +14,7 @@ __Format:__ [date] "message" by **reporters** [bonus]
 
 1. [2020-4-14] "In run.cc case 4,5 golden array shape bug" by **Ye Yuan, Anjiang Wei, Yuyue Wang, Chenyang Yang** [+1]
 2. [2020-4-15] "In document, input BNF bug in AList" by **Jing Mai, Can Su, Zixuan Ling** [+1]
+3. [2020-4-16] "In CMakeLists.txt, link target to library" by **Chenqian Wang, Jiaqi Zhang, Wenqi Wang** [+1]
 
 ### 1. Overview
 In this project, we provide several useful IR nodes and corresponding IRVisitor and IRMutator. The concept behind these structs are well studied in [Halide](https://github.com/halide/Halide) and [TVM](https://github.com/apache/incubator-tvm). Here we invent some new IR nodes and re-implement the Visitor and Mutator for them.
