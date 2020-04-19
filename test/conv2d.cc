@@ -60,8 +60,8 @@ int main() {
 
     // I
     Expr expr_I = Var::make(data_type, "I",
-        {n, c, Binary::make(data_type, BinaryOpType::Add, p, r),
-               Binary::make(data_type, BinaryOpType::Add, q, s)},
+        {n, c, Binary::make(index_type, BinaryOpType::Add, p, r),
+               Binary::make(index_type, BinaryOpType::Add, q, s)},
         {N, C, H, W});
 
     // W
