@@ -164,11 +164,19 @@ Stmt IRMutator::visit(Ref<const Move> op) {
 
 
 Group IRMutator::visit(Ref<const Kernel> op) {
+    std::vector<Expr> new_inputs;
+    for (auto expr : op->inputs) {
+        new_inputs.push_back(mutate(expr));
+    }
+    std::vector<Expr> new_outputs;
+    for (auto expr : op->outputs) {
+        new_outputs.push_back(mutate(expr));
+    }
     std::vector<Stmt> new_stmt_list;
     for (auto stmt : op->stmt_list) {
         new_stmt_list.push_back(mutate(stmt));
     }
-    return Kernel::make(op->name, op->inputs, op->outputs, new_stmt_list, op->kernel_type);
+    return Kernel::make(op->name, new_inputs, new_outputs, new_stmt_list, op->kernel_type);
 }
 
 

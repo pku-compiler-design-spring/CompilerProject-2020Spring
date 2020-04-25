@@ -49,7 +49,7 @@ int main() {
     Stmt loop_nest = LoopNest::make({i, j, k}, {main_stmt});
 
     // kernel
-    Group kernel = Kernel::make("simple_gemm", {"A", "B"}, {"C"}, {loop_nest}, KernelType::CPU);
+    Group kernel = Kernel::make("simple_gemm", {expr_A, expr_B}, {expr_C}, {loop_nest}, KernelType::CPU);
 
     // visitor
     IRVisitor visitor;

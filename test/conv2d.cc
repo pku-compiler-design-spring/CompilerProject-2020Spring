@@ -82,7 +82,7 @@ int main() {
     Stmt loop_nest = LoopNest::make({n, k, p, q, c, r, s}, {main_stmt});
 
     // kernel
-    Group kernel = Kernel::make("simple_conv2d", {"I", "W"}, {"O"}, {loop_nest}, KernelType::CPU);
+    Group kernel = Kernel::make("simple_conv2d", {expr_I, expr_W}, {expr_O}, {loop_nest}, KernelType::CPU);
 
     // visitor
     IRVisitor visitor;

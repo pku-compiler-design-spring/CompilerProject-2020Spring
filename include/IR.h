@@ -399,9 +399,9 @@ class Expr : public Ref<const ExprNode> {
      * cast to other type of reference
      */ 
     template <typename T>
-    std::shared_ptr<const T> as() {
+    std::shared_ptr<const T> as() const {
         if (this->node_type() == T::node_type_) {
-            return std::static_pointer_cast<T>(this->real_ptr());
+            return std::static_pointer_cast<const T>(this->real_ptr());
         }
         return nullptr;
     }
@@ -451,9 +451,9 @@ class Stmt : public Ref<const StmtNode> {
      * cast to other type of reference
      */ 
     template <typename T>
-    std::shared_ptr<const T> as() {
+    std::shared_ptr<const T> as() const {
         if (this->node_type() == T::node_type_) {
-            return std::static_pointer_cast<T>(this->real_ptr());
+            return std::static_pointer_cast<const T>(this->real_ptr());
         }
         return nullptr;
     }
@@ -503,9 +503,9 @@ class Group : public Ref<const GroupNode> {
      * cast to other type of reference
      */ 
     template <typename T>
-    std::shared_ptr<const T> as() {
+    std::shared_ptr<const T> as() const {
         if (this->node_type() == T::node_type_) {
-            return std::static_pointer_cast<T>(this->real_ptr());
+            return std::static_pointer_cast<const T>(this->real_ptr());
         }
         return nullptr;
     }
@@ -883,21 +883,21 @@ enum class KernelType : uint8_t {
 class Kernel : public GroupNode, public std::enable_shared_from_this<Kernel> {
  public:
     std::string name;
-    std::vector<std::string> inputs;
-    std::vector<std::string> outputs;
+    std::vector<Expr> inputs;
+    std::vector<Expr> outputs;
     std::vector<Stmt> stmt_list;
     KernelType kernel_type;
 
-    Kernel(const std::string &_name, const std::vector<std::string> &_inputs,
-        const std::vector<std::string> &_outputs, const std::vector<Stmt> &_stmt_list, KernelType _kernel_type) :
+    Kernel(const std::string &_name, const std::vector<Expr> &_inputs,
+        const std::vector<Expr> &_outputs, const std::vector<Stmt> &_stmt_list, KernelType _kernel_type) :
         GroupNode(IRNodeType::Kernel), name(_name), inputs(_inputs), outputs(_outputs),
         stmt_list(_stmt_list), kernel_type(_kernel_type) {}
 
     Group mutate_group(IRMutator *mutator) const;
     void visit_node(IRVisitor *visitor) const;
     
-    static Group make(const std::string &_name, const std::vector<std::string> &_inputs,
-        const std::vector<std::string> &_outputs, const std::vector<Stmt> &_stmt_list, KernelType _kernel_type) {
+    static Group make(const std::string &_name, const std::vector<Expr> &_inputs,
+        const std::vector<Expr> &_outputs, const std::vector<Stmt> &_stmt_list, KernelType _kernel_type) {
         return std::make_shared<const Kernel>(_name, _inputs, _outputs, _stmt_list, _kernel_type);
     }
 

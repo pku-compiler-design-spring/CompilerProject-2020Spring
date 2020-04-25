@@ -145,6 +145,12 @@ void IRVisitor::visit(Ref<const Move> op) {
 
 
 void IRVisitor::visit(Ref<const Kernel> op) {
+    for (auto expr : op->inputs) {
+        expr.visit_expr(this);
+    }
+    for (auto expr : op->outputs) {
+        expr.visit_expr(this);
+    }
     for (auto stmt : op->stmt_list) {
         stmt.visit_stmt(this);
     }

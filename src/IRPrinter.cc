@@ -162,21 +162,26 @@ void IRPrinter::visit(Ref<const Ramp> op) {
 
 
 void IRPrinter::visit(Ref<const Var> op) {
-    oss << op->name << "<";
-    for (size_t i = 0; i < op->shape.size(); ++i) {
-        oss << op->shape[i];
-        if (i < op->shape.size() - 1) {
-            oss << ", ";
+    oss << op->name;
+    if (print_arg) {
+        oss << "<";
+        for (size_t i = 0; i < op->shape.size(); ++i) {
+            oss << op->shape[i];
+            if (i < op->shape.size() - 1) {
+                oss << ", ";
+            }
         }
-    }
-    oss << ">[";
-    for (size_t i = 0; i < op->args.size(); ++i) {
-        op->args[i].visit_expr(this);
-        if (i < op->args.size() - 1) {
-            oss << ", ";
+        oss << ">";
+    } else {
+    oss << "[";
+        for (size_t i = 0; i < op->args.size(); ++i) {
+            op->args[i].visit_expr(this);
+            if (i < op->args.size() - 1) {
+                oss << ", ";
+            }
         }
+        oss << "]";
     }
-    oss << "]";
 }
 
 
@@ -290,16 +295,18 @@ void IRPrinter::visit(Ref<const Kernel> op) {
         oss << "<GPU>";
     }
     oss << " " << op->name << "(";
+    print_arg = true;
     for (size_t i = 0; i < op->inputs.size(); ++i) {
-        oss << op->inputs[i];
+        op->inputs[i].visit_expr(this);
         if (i < op->inputs.size() - 1) {
             oss << ", ";
         }
     }
     for (size_t i = 0; i < op->outputs.size(); ++i) {
         oss << ", ";
-        oss << op->outputs[i];
+        op->outputs[i].visit_expr(this);
     }
+    print_arg = false;
     oss << ") {\n";
     enter();
     for (auto stmt : op->stmt_list) {
