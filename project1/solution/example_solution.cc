@@ -41,7 +41,7 @@ void kernel_example(float (&B)[32][16], float (&C)[32][16], float (&A)[32][16]) 
         std::cout << "parse failed";
     }
     std::string str = root["kernel"].asString();
-    myroot = yyparse_string((char *)str.c_str());
+    myroot = yyparse_string((char *)(str.c_str()));
     Boost::Internal::IRNodeType nodetype;
     nodetype = Boost::Internal::IRNodeType::Kernel;
     bool flag = (nodetype == Boost::Internal::IRNodeType::Kernel);
