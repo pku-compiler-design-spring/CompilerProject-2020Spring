@@ -45,7 +45,6 @@ void kernel_example(float (&B)[32][16], float (&C)[32][16], float (&A)[32][16]) 
     Boost::Internal::IRNodeType nodetype;
     nodetype = Boost::Internal::IRNodeType::Kernel;
     bool flag = (nodetype == Boost::Internal::IRNodeType::Kernel);
-    bool testflag = true;
     if (flag)
         ofile << cheat_src;
     else
