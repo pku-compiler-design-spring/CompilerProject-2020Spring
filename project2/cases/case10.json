@@ -1,0 +1,8 @@
+{
+    "name": "grad_case10",
+    "ins": ["B"],
+    "outs": ["A"],
+    "data_type": "float",
+    "kernel": "A<8, 8>[i, j] = (B<10, 8>[i, j] + B<10, 8>[i + 1, j] + B<10, 8>[i + 2, j]) / 3.0;",
+    "grad_to": ["B"]
+}

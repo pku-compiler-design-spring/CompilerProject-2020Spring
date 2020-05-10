@@ -80,6 +80,7 @@ endif()
 
 add_subdirectory(test)
 add_subdirectory(project1)
+add_subdirectory(project2)
 
 # JSON targets.
 add_subdirectory("3rdparty/jsoncpp"

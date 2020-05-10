@@ -1,0 +1,8 @@
+{
+  "name": "grad_case8",
+  "ins": ["A"],
+  "outs": ["B"],
+  "data_type": "float",
+  "kernel": "B<32>[i] = A<2, 16>[i//16, i%16];",
+  "grad_to": ["A"]
+}
