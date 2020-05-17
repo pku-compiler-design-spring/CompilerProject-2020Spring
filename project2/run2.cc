@@ -434,7 +434,7 @@ bool test_case10(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) 
     // "dB<10, 8>[i, j] = (select(i >= 0 && i < 8, dA<8, 8>[i, j], 0.0) + select(i >= 1 && i < 9, dA<8, 8>[i - 1, j], 0.0) + select(i >= 2 && i < 10, dA<8, 8>[i - 2, j], 0.0)) / 3.0"
     float dA[8][8] = {{0}};
     float dB[10][8] = {{0}};
-    float golden[8][8] = {{0}};
+    float golden[10][8] = {{0}};
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
             dA[i][j] = dis(gen);
