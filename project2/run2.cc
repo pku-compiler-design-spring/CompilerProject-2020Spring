@@ -3,6 +3,8 @@
 
 #include "run2.h"
 
+const int eps = 1e-5;
+
 
 bool test_case1(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // "C<4, 16>[i, j] = A<4, 16>[i, j] * B<4, 16>[i, j] + 1.0;"
@@ -34,7 +36,7 @@ bool test_case1(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 16; ++j) {
-            if (std::abs(golden[i][j] - dA[i][j]) >= 1e-5) {
+            if (std::abs(golden[i][j] - dA[i][j]) >= eps && std::abs((golden[i][j] - dA[i][j]) / golden[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -75,7 +77,7 @@ bool test_case2(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 16; ++j) {
-            if (std::abs(golden[i][j] - dA[i][j]) >= 1e-5) {
+            if (std::abs(golden[i][j] - dA[i][j]) >= eps && std::abs((golden[i][j] - dA[i][j]) / golden[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -122,7 +124,7 @@ bool test_case3(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 16; ++j) {
-            if (std::abs(golden[i][j] - dA[i][j]) >= 1e-5) {
+            if (std::abs(golden[i][j] - dA[i][j]) >= eps && std::abs((golden[i][j] - dA[i][j]) / golden[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -174,7 +176,7 @@ bool test_case4(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 32; ++j) {
-            if (std::abs(goldenB[i][j] - dB[i][j]) >= 1e-5) {
+            if (std::abs(goldenB[i][j] - dB[i][j]) >= eps && std::abs((goldenB[i][j] - dB[i][j]) / goldenB[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -182,7 +184,7 @@ bool test_case4(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     }
     for (int i = 0; i < 32; ++i) {
         for (int j = 0; j < 32; ++j) {
-            if (std::abs(goldenC[i][j] - dC[i][j]) >= 1e-5) {
+            if (std::abs(goldenC[i][j] - dC[i][j]) >= eps && std::abs((goldenC[i][j] - dC[i][j]) / goldenC[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -237,7 +239,7 @@ bool test_case5(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     for (int i = 0; i < 16; ++i) {
         for (int k = 0; k < 32; ++k) {
             for (int l = 0; l < 4; ++l) {
-                if (std::abs(golden[i][k][l] - dB[i][k][l]) >= 1e-5) {
+                if (std::abs(golden[i][k][l] - dB[i][k][l]) >= eps && std::abs((golden[i][k][l] - dB[i][k][l]) / golden[i][k][l]) >= eps) {
                     std::cout << "Wrong answer\n";
                     return false;
                 }
@@ -304,7 +306,7 @@ bool test_case6(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
         for (int k = 0; k < 8; ++k) {
             for (int h = 0; h < 7; ++h) {
                 for (int w = 0; w < 7; ++w) {
-                    if (std::abs(golden[n][k][h][w] - dB[n][k][h][w]) >= 1e-5) {
+                    if (std::abs(golden[n][k][h][w] - dB[n][k][h][w]) >= eps && std::abs((golden[n][k][h][w] - dB[n][k][h][w]) / golden[n][k][h][w]) >= eps) {
                         std::cout << "Wrong answer\n";
                         return false;
                     }
@@ -344,7 +346,7 @@ bool test_case7(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 32; ++j) {
-            if (std::abs(golden[j][i] - dA[j][i]) >= 1e-5) {
+            if (std::abs(golden[j][i] - dA[j][i]) >= eps && std::abs((golden[j][i] - dA[j][i]) / golden[j][i]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -380,7 +382,7 @@ bool test_case8(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     // check
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 16; ++j) {
-            if (std::abs(golden[i][j] - dA[i][j]) >= 1e-5) {
+            if (std::abs(golden[i][j] - dA[i][j]) >= eps && std::abs((golden[i][j] - dA[i][j]) / golden[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
@@ -417,7 +419,7 @@ bool test_case9(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
 
     // check
     for (int i = 0; i < 4; ++i) {
-        if (std::abs(golden[i] - dA[i]) >= 1e-5) {
+        if (std::abs(golden[i] - dA[i]) >= eps && std::abs((golden[i] - dA[i]) / golden[i]) >= eps) {
             std::cout << "Wrong answer\n";
             return false;
         }
@@ -454,7 +456,7 @@ bool test_case10(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) 
     // check
     for (int i = 0; i < 10; ++i) {
         for (int j = 0; j < 8; ++j) {
-            if (std::abs(golden[i][j] - dB[i][j]) >= 1e-5) {
+            if (std::abs(golden[i][j] - dB[i][j]) >= eps && std::abs((golden[i][j] - dB[i][j]) / golden[i][j]) >= eps) {
                 std::cout << "Wrong answer\n";
                 return false;
             }
