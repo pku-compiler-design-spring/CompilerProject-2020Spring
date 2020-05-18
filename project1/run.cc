@@ -72,6 +72,80 @@ bool test_case1() {
 }
 
 
+bool test_case2(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
+    float A[16][8] = {{0}};
+    float golden[16][8] = {{0}};
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            A[i][j] = dis(gen);
+            golden[i][j] = A[i][j];
+        }
+    }
+    // compute golden
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            golden[i][j] = golden[i][j] + 2;
+        }
+    }
+    try {
+        kernel_case2(A);
+    } catch (...) {
+        std::cout << "Failed because of runtime error\n";
+        return false;
+    }
+
+    // check
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (std::abs(golden[i][j] - A[i][j]) >= 1e-5) {
+                std::cout << "Wrong answer\n";
+                return false;
+            }
+        }
+    }
+    // correct
+    return true;
+}
+
+
+bool test_case3(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
+    int A[16][32] = {{0}};
+    int B[16][32] = {{0}};
+    int C[16][32] = {{0}};
+    int golden[16][32] = {{0}};
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            B[i][j] = static_cast<int>(dis(gen));
+            C[i][j] = static_cast<int>(dis(gen));
+        }
+    }
+    // compute golden
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            golden[i][j] = B[i][j] + C[i][j];
+        }
+    }
+    try {
+        kernel_case3(B, C, A);
+    } catch (...) {
+        std::cout << "Failed because of runtime error\n";
+        return false;
+    }
+
+    // check
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            if (std::abs(golden[i][j] - A[i][j]) >= 1e-5) {
+                std::cout << "Wrong answer\n";
+                return false;
+            }
+        }
+    }
+    // correct
+    return true;
+}
+
+
 bool test_case4(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     float A[16][32] = {{0}};
     float B[16][32] = {{0}};
@@ -269,6 +343,100 @@ bool test_case7(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
 }
 
 
+bool test_case8(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
+    float A[8][2][16] = {{{0}}};
+    float B[8][16] = {{0}};
+    float golden[8][2][16] = {{{0}}};
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 16; ++j) {
+            B[i][j] = dis(gen);
+        }
+    }
+    // compute golden
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            for (int k = 0; k < 16; ++k) {
+                golden[i][j][k] = B[i][k];
+            }
+        }
+    }
+    try {
+        kernel_case8(B, A);
+    } catch (...) {
+        std::cout << "Failed because of runtime error\n";
+        return false;
+    }
+
+    // check
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            for (int k = 0; k < 16; ++k) {
+                if (std::abs(golden[i][j][k] - A[i][j][k]) >= 1e-5) {
+                    std::cout << "Wrong answer\n";
+                    return false;
+                }
+            }
+        }
+    }
+    // correct
+    return true;
+}
+
+
+bool test_case9(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
+    float A[16][32] = {{0}};
+    float B[16][32][8] = {{{0}}};
+    float C[32][32] = {{0}};
+    float D[8][32] = {{0}};
+    float golden[16][32] = {{0}};
+    for (int i = 0; i < 16; ++i) {
+        for (int k = 0; k < 32; ++k) {
+            for (int l = 0; l < 8; ++l) {
+                B[i][k][l] = dis(gen);
+            }
+        }
+    }
+    for (int k = 0; k < 32; ++k) {
+        for (int j = 0; j < 32; ++j) {
+            C[k][j] = dis(gen);
+        }
+    }
+    for (int l = 0; l < 8; ++l) {
+        for (int j = 0; j < 32; ++j) {
+            D[l][j] = dis(gen);
+        }
+    }
+    // compute golden
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            for (int k = 0; k < 32; ++k) {
+                for (int l = 0; l < 8; ++l) {
+                    golden[i][j] = golden[i][j] + B[i][k][l] * C[k][j] * D[l][j];
+                }
+            }
+        }
+    }
+    try {
+        kernel_case9(B, C, D, A);
+    } catch (...) {
+        std::cout << "Failed because of runtime error\n";
+        return false;
+    }
+
+    // check
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            if (std::abs(golden[i][j] - A[i][j]) >= 1e-5) {
+                std::cout << "Wrong answer\n";
+                return false;
+            }
+        }
+    }
+    // correct
+    return true;
+}
+
+
 bool test_case10(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
     float A[8][8] = {{0}};
     float B[10][10] = {{0}};
@@ -322,8 +490,16 @@ int main() {
     if (res) {
         std::cout << "Success!\n";
     }
-    std::cout << "Case 2 is hidden\n";
-    std::cout << "Case 3 is hidden\n";
+    std::cout << "Case 2 ";
+    res = test_case2(gen, dis);
+    if (res) {
+        std::cout << "Success!\n";
+    }
+    std::cout << "Case 3 ";
+    res = test_case3(gen, dis);
+    if (res) {
+        std::cout << "Success!\n";
+    }
     std::cout << "Case 4 ";
     res = test_case4(gen, dis);
     if (res) {
@@ -344,8 +520,16 @@ int main() {
     if (res) {
         std::cout << "Success!\n";
     }
-    std::cout << "Case 8 is hidden\n";
-    std::cout << "Case 9 is hidden\n";
+    std::cout << "Case 8 ";
+    res = test_case8(gen, dis);
+    if (res) {
+        std::cout << "Success!\n";
+    }
+    std::cout << "Case 9 ";
+    res = test_case9(gen, dis);
+    if (res) {
+        std::cout << "Success!\n";
+    }
     std::cout << "Case 10 ";
     res = test_case10(gen, dis);
     if (res) {
