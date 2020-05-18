@@ -1,7 +1,7 @@
 #ifndef PROJECT1_RUN_H
 #define PROJECT1_RUN_H
 
-void grad_case1(float (&B)[4][16], float (&dC)[4][16], float (&A)[4][16]);
+void grad_case1(float (&B)[4][16], float (&dC)[4][16], float (&dA)[4][16]);
 void grad_case2(float (&A)[4][16], float (&dB)[4][16], float (&dA)[4][16]);
 void grad_case3(float (&B)[16][16], float (&dC)[4][16], float (&dA)[4][16]);
 void grad_case4(float (&B)[16][32], float (&C)[32][32], float (&dA)[16][32], float (&dB)[16][32], float (&dC)[32][32]);
