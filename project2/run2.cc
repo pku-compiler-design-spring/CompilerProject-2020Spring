@@ -3,7 +3,7 @@
 
 #include "run2.h"
 
-const int eps = 1e-5;
+const double eps = 1e-5;
 
 
 bool test_case1(std::mt19937 &gen, std::uniform_real_distribution<float> &dis) {
