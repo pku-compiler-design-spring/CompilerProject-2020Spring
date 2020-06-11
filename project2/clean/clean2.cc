@@ -11,7 +11,7 @@ void clean_write(std::string dst, std::string src) {
 
 int main() {
     clean_write("./kernels/grad_case1.cc",
-        "#include \"../run2.h\"\n\nvoid grad_case1(float (&B)[4][16], float (&dC)[4][16], float (&A)[4][16]) {}");
+        "#include \"../run2.h\"\n\nvoid grad_case1(float (&B)[4][16], float (&dC)[4][16], float (&dA)[4][16]) {}");
     clean_write("./kernels/grad_case2.cc",
         "#include \"../run2.h\"\n\nvoid grad_case2(float (&A)[4][16], float (&dB)[4][16], float (&dA)[4][16]) {}");
     clean_write("./kernels/grad_case3.cc",
