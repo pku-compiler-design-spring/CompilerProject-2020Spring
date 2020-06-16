@@ -30,21 +30,21 @@ namespace Internal {
 
 
 std::string IRPrinter::print(const Expr &expr) {
-    oss.clear();
+    oss.str("");
     expr.visit_expr(this);
     return oss.str();
 }
 
 
 std::string IRPrinter::print(const Stmt &stmt) {
-    oss.clear();
+    oss.str("");
     stmt.visit_stmt(this);
     return oss.str();
 }
 
 
 std::string IRPrinter::print(const Group &group) {
-    oss.clear();
+    oss.str("");
     group.visit_group(this);
     return oss.str();
 }
